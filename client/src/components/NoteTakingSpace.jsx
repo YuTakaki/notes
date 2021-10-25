@@ -81,9 +81,9 @@ const NoteTakingSpace = (props) => {
 
 	return (
 		<section className="NoteTakingSpace">
-			{activeNote ? (
-				<>
-					<div className="options">
+			<div className="options">
+				{activeNote && (
+					<>
 						<button className="del" onClick={deleteNote}>
 							Delete
 						</button>
@@ -99,11 +99,12 @@ const NoteTakingSpace = (props) => {
 								</button>
 							</>
 						)}
-					</div>
-
-					<section
-						className="card preview"
-						ref={textareasref}>
+					</>
+				)}
+			</div>
+			<section className="card preview" ref={textareasref}>
+				{activeNote && (
+					<>
 						<textarea
 							value={notesInfo.summary}
 							placeholder={
@@ -120,13 +121,9 @@ const NoteTakingSpace = (props) => {
 								!notesInfo.notes ? "Input Summary" : ""
 							}
 							className="noteNotes"></textarea>
-					</section>
-				</>
-			) : (
-				<div className="">
-					{/* <h1>Welcome to Notes</h1> */}
-				</div>
-			)}
+					</>
+				)}
+			</section>
 		</section>
 	);
 };

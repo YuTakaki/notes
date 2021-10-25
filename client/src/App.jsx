@@ -19,7 +19,7 @@ const App = () => {
 	}, []);
 
 	const updateActiveNote = (id) => {
-		setActiveNote(id);
+		setActiveNote(id === activeNote ? "" : id);
 	};
 
 	const filterNotes = (id) => {

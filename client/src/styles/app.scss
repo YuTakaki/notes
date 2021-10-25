@@ -33,11 +33,16 @@ main {
 		width: 65%;
 		height: 100%;
 		padding: 20px;
+		.notesHeader {
+			display: flex;
+			justify-content: center;
+		}
 		.cardContainer {
 			display: flex;
 			flex-wrap: wrap;
 			margin-top: 20px;
 			justify-content: center;
+			overflow-y: auto;
 			.card {
 				width: 200px;
 				height: 150px;
@@ -73,6 +78,7 @@ main {
 		height: 100%;
 		.options {
 			padding: 5px;
+			height: 40px;
 			button {
 				margin-right: 10px;
 			}
