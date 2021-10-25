@@ -21,6 +21,8 @@ module.exports = {
 			min: 2,
 			max: 10,
 		},
-		directory: `${__dirname}/db/migrations`,
+		migrations: {
+			directory: `${__dirname}/db/migrations`,
+		},
 	},
 };
