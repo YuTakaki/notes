@@ -38,6 +38,9 @@ const NoteTakingSpace = (props) => {
 		try {
 			await axios.delete(`/api/notes/${activeNote}`);
 			filterNotes(activeNote);
+			setDefaultInfo({});
+			setNotesInfo({});
+			setEditStatus(false);
 		} catch (error) {
 			console.log(error);
 		}
