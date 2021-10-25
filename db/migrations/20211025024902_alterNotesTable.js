@@ -1,6 +1,7 @@
 exports.up = function (knex) {
 	return knex.schema.table("notes", (table) => {
 		table.string("notes").nullable().alter();
+		table.string("summary");
 	});
 };
 
