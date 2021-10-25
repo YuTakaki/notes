@@ -1,5 +1,13 @@
-const addNote = (req, res) => {
+const db = require("../../db/knex");
+
+const addNote = async (req, res) => {
 	try {
+		const { note } = req.body;
+		const addedNote = await db
+			.insert({ note })
+			.returning("*")
+			.into("notes");
+		console.log(addedNote);
 	} catch (error) {
 		console.log(error);
 	}
