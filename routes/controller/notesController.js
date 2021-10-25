@@ -2,12 +2,12 @@ const db = require("../../db/knex");
 
 const addNote = async (req, res) => {
 	try {
-		const { note } = req.body;
+		const { notes } = req.body;
 		const addedNote = await db
-			.insert({ note })
+			.insert({ notes })
 			.returning("*")
 			.into("notes");
-		console.log(addedNote);
+		res.send(addedNote);
 	} catch (error) {
 		console.log(error);
 	}

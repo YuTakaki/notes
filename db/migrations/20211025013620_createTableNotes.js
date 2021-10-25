@@ -5,7 +5,7 @@ exports.up = function (knex) {
 			.primary()
 			.defaultTo(knex.raw("uuid_generate_v4()"));
 		table.text("notes").notNullable();
-		table.timestamp("date").notNullable();
+		table.timestamp("date").defaultTo(knex.fn.now());
 	});
 };
 
