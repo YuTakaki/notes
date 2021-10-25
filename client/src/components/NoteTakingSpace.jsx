@@ -17,6 +17,7 @@ const NoteTakingSpace = (props) => {
 	const [editStatus, setEditStatus] = useState(false);
 	const [notesInfo, setNotesInfo] = useState({});
 	const textareasref = useRef();
+	const summaryRef = useRef();
 	useEffect(() => {
 		if (activeNote !== "") {
 			(async () => {
@@ -27,6 +28,7 @@ const NoteTakingSpace = (props) => {
 					setNotesInfo(info.data);
 					setDefaultInfo(info.data);
 					resetTextAreaHeight();
+					summaryRef.current.focus();
 				} catch (error) {
 					console.log(error);
 				}
@@ -82,7 +84,11 @@ const NoteTakingSpace = (props) => {
 	const resetTextAreaHeight = () => {
 		[...textareasref.current.children].forEach(
 			(textarea) => {
-				textarea.style.height = "40px";
+				if ([...textarea.classList].includes("noteNotes")) {
+					textarea.style.height = "200px";
+				} else {
+					textarea.style.height = "40px";
+				}
 			}
 		);
 	};
@@ -128,6 +134,7 @@ const NoteTakingSpace = (props) => {
 							}
 							name="summary"
 							onChange={updateNotesInfo}
+							ref={summaryRef}
 							className="noteSummary"></textarea>
 						<textarea
 							value={notesInfo.notes}
