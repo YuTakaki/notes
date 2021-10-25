@@ -50,7 +50,6 @@ const NoteTakingSpace = (props) => {
 
 	const updateNotesInfo = (e) => {
 		e.target.style.height = `16px`;
-
 		if (!editStatus) setEditStatus(true);
 		setNotesInfo({
 			...notesInfo,
