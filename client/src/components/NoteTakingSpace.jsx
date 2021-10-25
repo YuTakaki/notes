@@ -7,7 +7,12 @@ import React, {
 } from "react";
 
 const NoteTakingSpace = (props) => {
-	const { activeNote, filterNotes, mapNotes } = props;
+	const {
+		activeNote,
+		filterNotes,
+		mapNotes,
+		updateActiveNote,
+	} = props;
 	const [defaultInfo, setDefaultInfo] = useState({});
 	const [editStatus, setEditStatus] = useState(false);
 	const [notesInfo, setNotesInfo] = useState({});
@@ -80,10 +85,18 @@ const NoteTakingSpace = (props) => {
 	};
 
 	return (
-		<section className="NoteTakingSpace">
+		<section
+			className={`NoteTakingSpace ${
+				activeNote && "sectionActive"
+			}`}>
 			<div className="options">
 				{activeNote && (
 					<>
+						<button
+							className="noteList"
+							onClick={() => updateActiveNote("")}>
+							Lists
+						</button>
 						<button className="del" onClick={deleteNote}>
 							Delete
 						</button>

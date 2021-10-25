@@ -19,7 +19,10 @@ const NoteCards = (props) => {
 		}
 	};
 	return (
-		<section className="NoteCards">
+		<section
+			className={`NoteCards ${
+				activeNote === "" && "sectionActive"
+			}`}>
 			<div className="notesHeader">
 				<button className="add" onClick={addNote}>
 					Add

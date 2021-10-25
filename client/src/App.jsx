@@ -53,6 +53,7 @@ const App = () => {
 					activeNote={activeNote}
 					filterNotes={filterNotes}
 					mapNotes={mapNotes}
+					updateActiveNote={updateActiveNote}
 				/>
 			</main>
 		</div>
