@@ -46,6 +46,7 @@ const App = () => {
 					notes={notes}
 					updateActiveNote={updateActiveNote}
 					addNewNote={addNewNote}
+					activeNote={activeNote}
 				/>
 
 				<NoteTakingSpace

@@ -1,13 +1,18 @@
 import axios from "axios";
-import React, { useEffect, useState, memo } from "react";
+import React, {
+	useEffect,
+	useState,
+	memo,
+	useRef,
+} from "react";
 
 const NoteTakingSpace = (props) => {
 	const { activeNote, filterNotes, mapNotes } = props;
 	const [defaultInfo, setDefaultInfo] = useState({});
 	const [editStatus, setEditStatus] = useState(false);
 	const [notesInfo, setNotesInfo] = useState({});
+	const textareasref = useRef();
 	useEffect(() => {
-		console.log(activeNote);
 		if (activeNote !== "") {
 			(async () => {
 				try {
@@ -16,6 +21,7 @@ const NoteTakingSpace = (props) => {
 					);
 					setNotesInfo(info.data);
 					setDefaultInfo(info.data);
+					resetTextAreaHeight();
 				} catch (error) {
 					console.log(error);
 				}
@@ -33,11 +39,16 @@ const NoteTakingSpace = (props) => {
 	};
 
 	const updateNotesInfo = (e) => {
+		e.target.style.height = `16px`;
+
 		if (!editStatus) setEditStatus(true);
 		setNotesInfo({
 			...notesInfo,
 			[e.target.name]: e.target.value,
 		});
+		e.target.style.height = `${
+			e.target.scrollHeight + 16
+		}px`;
 	};
 
 	const updateNote = async (e) => {
@@ -57,6 +68,15 @@ const NoteTakingSpace = (props) => {
 	const reset = () => {
 		setNotesInfo(defaultInfo);
 		setEditStatus(false);
+		resetTextAreaHeight();
+	};
+
+	const resetTextAreaHeight = () => {
+		[...textareasref.current.children].forEach(
+			(textarea) => {
+				textarea.style.height = "40px";
+			}
+		);
 	};
 
 	return (
@@ -72,28 +92,40 @@ const NoteTakingSpace = (props) => {
 								<button
 									className="edit"
 									onClick={updateNote}>
-									Update
+									Save
 								</button>
-								<button className="edit" onClick={reset}>
+								<button className="reset" onClick={reset}>
 									Reset
 								</button>
 							</>
 						)}
 					</div>
 
-					<textarea
-						value={notesInfo.summary}
-						name="summary"
-						onChange={updateNotesInfo}
-						className="noteSummary"></textarea>
-					<textarea
-						value={notesInfo.notes}
-						name="notes"
-						onChange={updateNotesInfo}
-						className="noteNotes"></textarea>
+					<section
+						className="card preview"
+						ref={textareasref}>
+						<textarea
+							value={notesInfo.summary}
+							placeholder={
+								!notesInfo.summary ? "Input Summary" : ""
+							}
+							name="summary"
+							onChange={updateNotesInfo}
+							className="noteSummary"></textarea>
+						<textarea
+							value={notesInfo.notes}
+							name="notes"
+							onChange={updateNotesInfo}
+							placeholder={
+								!notesInfo.notes ? "Input Summary" : ""
+							}
+							className="noteNotes"></textarea>
+					</section>
 				</>
 			) : (
-				<div>select a note</div>
+				<div className="">
+					{/* <h1>Welcome to Notes</h1> */}
+				</div>
 			)}
 		</section>
 	);

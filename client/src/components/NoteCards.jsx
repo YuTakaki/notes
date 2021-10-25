@@ -3,7 +3,12 @@ import React from "react";
 import NoteCard from "./NoteCard";
 
 const NoteCards = (props) => {
-	const { notes, updateActiveNote, addNewNote } = props;
+	const {
+		notes,
+		updateActiveNote,
+		addNewNote,
+		activeNote,
+	} = props;
 
 	const addNote = async () => {
 		try {
@@ -16,7 +21,9 @@ const NoteCards = (props) => {
 	return (
 		<section className="NoteCards">
 			<div className="notesHeader">
-				<button onClick={addNote}>Add</button>
+				<button className="add" onClick={addNote}>
+					Add
+				</button>
 			</div>
 			<div className="cardContainer">
 				{notes.map((note) => (
@@ -24,6 +31,7 @@ const NoteCards = (props) => {
 						note={note}
 						updateActiveNote={updateActiveNote}
 						key={note.id}
+						activeNote={activeNote}
 					/>
 				))}
 			</div>
