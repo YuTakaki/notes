@@ -2,9 +2,8 @@ const db = require("../../db/knex");
 
 const addNote = async (req, res) => {
 	try {
-		const { notes } = req.body;
 		const addedNote = await db
-			.insert({ notes })
+			.insert({})
 			.returning("*")
 			.into("notes");
 		res.send(addedNote[0]);
@@ -26,9 +25,10 @@ const deleteNote = async (req, res) => {
 const updateNote = async (req, res) => {
 	try {
 		const { id } = req.params;
-		const { notes } = req.body;
+		const { notes, summary } = req.body;
+		console.log(notes, summary);
 		const note = await db("notes")
-			.update({ notes })
+			.update({ notes, summary })
 			.where({ id })
 			.returning("*");
 		res.send(note[0]);
@@ -39,7 +39,9 @@ const updateNote = async (req, res) => {
 
 const allNotes = async (req, res) => {
 	try {
-		const notes = await db("notes").select("*");
+		const notes = await db("notes")
+			.select("*")
+			.orderBy("date", "desc");
 		res.send(notes);
 	} catch (error) {
 		console.log(error);

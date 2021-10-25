@@ -1,0 +1,28 @@
+.App {
+	max-width: 1260px;
+	width: 100%;
+	height: 100vh;
+	margin: auto;
+}
+
+main {
+	width: 100%;
+	height: 100%;
+	padding: 20px;
+	display: flex;
+	.NoteCards {
+		width: 70%;
+		height: 100%;
+		.card {
+			padding: 10px;
+			box-shadow: 1px 1px 4px rgb(97, 97, 97);
+		}
+	}
+
+	.NoteTakingSpace {
+		width: 30%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+}
