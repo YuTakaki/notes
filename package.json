@@ -1,0 +1,26 @@
+{
+	"name": "notes",
+	"version": "1.0.0",
+	"main": "server.js",
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"scripts": {
+		"start": "node server.js",
+		"client": "cd client && npm start",
+		"server": "nodemon server",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"heroku-postbuild": "cd client && npm install && npm run build"
+	},
+	"dependencies": {
+		"bcrypt": "^5.0.1",
+		"concurrently": "^6.3.0",
+		"dotenv": "^10.0.0",
+		"express": "^4.17.1",
+		"jsonwebtoken": "^8.5.1",
+		"knex": "^0.95.11",
+		"nodemon": "^2.0.14",
+		"pg": "^8.7.1"
+	}
+}
